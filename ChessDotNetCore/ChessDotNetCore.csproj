@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64</Platforms>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Lubos Repaty</Authors>
+    <Description>C# dotnet 8 chess library with SAN and FEN parsing/generation, moves validation, PGN filter, import an save games in PGN format, read any Polyglot openings book and build your Polyglot openings book and much more!</Description>
+    <PackageTags>chess, library, fen, pgn, move, validation</PackageTags>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <FileVersion>1.1.0</FileVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.1.0</Version>
+    <PackageProjectUrl>https://github.com/lrepaty/ChessDotNetCore</PackageProjectUrl>
+    <Copyright>Copyright © Lubos Repaty 2023-2023</Copyright>
+    <Title></Title>
+    <Company>Lubos Repaty</Company>
+    <Product>ChessDotNetCore</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Kasparov.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Kasparov.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>
