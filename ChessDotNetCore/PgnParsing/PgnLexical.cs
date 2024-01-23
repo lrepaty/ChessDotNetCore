@@ -497,9 +497,9 @@ namespace ChessDotNetCore.PgnParsing
             {
                 chr = GetChr();
                 strb.Append(chr);
-                if (strb.ToString().Contains("\n[Event "))
+                if (strb.ToString().Contains("[Event "))
                 {
-                    m_posInBuffer -= 6;
+                    m_posInBuffer -= 7;
                     if (m_posInBuffer < 0)
                     {
                         SelectPrevBuffer();
@@ -507,8 +507,6 @@ namespace ChessDotNetCore.PgnParsing
                     toContinue = false;
                 }
             }
-            if (chr != '\0')
-                SelectPrevChr();
         }
 
         /// <summary>
