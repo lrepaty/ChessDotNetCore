@@ -1729,7 +1729,7 @@ namespace ChessDotNetCore
         {
             ChessUtilities.ThrowIfNull(from, nameof(from));
             Piece? piece = GetPieceAt(from);
-            if (piece! == null! || piece.Owner != CurrentPlayer) 
+            if (piece! == null! || piece.Owner != CurrentPlayer)
                 return new ReadOnlyCollection<Move>(new List<Move>());
             return piece.GetValidMoves(from, returnIfAny, this, IsValidMove);
         }
