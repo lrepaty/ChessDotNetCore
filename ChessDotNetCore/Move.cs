@@ -105,7 +105,7 @@ namespace ChessDotNetCore
         /// <summary>
         /// Move tme
         /// </summary>
-        public TimeSpan MoveTime { get; private set; }
+        public TimeSpan MoveTime { get; set; }
 
         /// <summary>
         /// Move from book
