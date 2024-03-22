@@ -9,8 +9,8 @@
     <Authors>Lubos Repaty</Authors>
     <Description>C# dotnet 8 chess library with SAN and FEN parsing/generation, moves validation, PGN filter, import an save games in PGN format, read any Polyglot openings book and build your Polyglot openings book and much more!</Description>
     <PackageTags>chess, library, fen, pgn, move, validation</PackageTags>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
-    <FileVersion>1.2.0</FileVersion>
+    <AssemblyVersion>1.3.0</AssemblyVersion>
+    <FileVersion>1.3.0</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Version>1.2.0</Version>
     <PackageProjectUrl>https://github.com/lrepaty/ChessDotNetCore</PackageProjectUrl>
