@@ -3898,7 +3898,7 @@ namespace ChessDotNetCore.Tests
         }
 
         [TestMethod]
-        public void ExtractBookKeyListFromMultipleLines()
+        public void TestExtractBookKeyListFromMultipleLines()
         {
             string[] m_arrLineNames = { "Kasparovs_Games.pgn" };
             SortedList<Book.BookKey, Book.BookValue> m_soredListBookKeyList;
@@ -3915,7 +3915,7 @@ namespace ChessDotNetCore.Tests
             skipped.Should().Be(0);
             truncated.Should().Be(0);
             errTxt.Should().BeNull();
-            book.CreateBookList(m_soredListBookKeyList, null, null);
+            book.CreateBookList(m_soredListBookKeyList, 3500, 6, null, null);
             book.SaveBookToFile("Kasparov.bin");
         }
     }

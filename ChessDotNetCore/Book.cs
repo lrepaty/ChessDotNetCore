@@ -49,13 +49,11 @@ namespace ChessDotNetCore
         public struct BookValue
         {
             /// <summary>Wins</summary>
-            public ushort Wins;
+            public int Wins;
             /// <summary>Draws</summary>
-            public ushort Draws;
+            public int Draws;
             /// <summary>Lost</summary>
-            public ushort Lost;
-            /// <summary>Lost</summary>
-            public ushort Weight;
+            public int Lost;
         };
 
         #endregion
@@ -299,24 +297,35 @@ namespace ChessDotNetCore
         /// Create the book entries from a series of move list
         /// </summary>
         /// <param name="soredListBookKeyList">     List of BookKeys</param>
+        /// <param name="minWeight">                Minimal games</param>
+        /// <param name="minGames">                 Minimal weight</param>
         /// <param name="callback">                 Callback to call to show progress</param>
         /// <param name="cookie">                   Cookie for callback</param>
         /// <returns>
         /// Nb of entries created
         /// </returns>
-        public virtual int CreateBookList(SortedList<BookKey, BookValue> soredListBookKeyList, PgnParser.DelProgressCallBack? callback, object? cookie)
+        public int CreateBookList(SortedList<BookKey, BookValue> soredListBookKeyList, int minWeight, int minGames, PgnParser.DelProgressCallBack callback, object cookie)
         {
-            m_bookEntries = [..soredListBookKeyList
-                .Where(item => item.Value.Wins + item.Value.Draws > 0)
+            m_bookEntries = soredListBookKeyList
+                .Where(item => item.Value.Wins + item.Value.Draws + item.Value.Lost >= minGames)
                 .OrderBy(item => item.Key.Key)
                 .Select(item => new BookEntry()
                 {
                     Key = item.Key.Key,
                     Move = item.Key.Move,
-                    Weight = (ushort)(item.Value.Wins * 2 + item.Value.Draws),
+                    Weight = (ushort)((item.Value.Wins * 2 + item.Value.Draws) * 1000 / (item.Value.Wins * 2 + item.Value.Draws + item.Value.Lost * 2)),
                     Learn = 0,
-                }).OrderBy(item => item.Key)
-                .ThenByDescending(item => item.Weight)];
+                }).Where(item => item.Weight >= minWeight)
+                .OrderBy(item => item.Key)
+                .ThenByDescending(item => item.Weight)
+                .Select(item => new BookEntry()
+                {
+                    Key = item.Key,
+                    Move = item.Move,
+                    Weight = (ushort)(item.Weight - minWeight),
+                    Learn = 0,
+                }).ToArray();
+
             if (callback != null)
             {
                 callback(cookie, PgnParser.ParsingPhase.CreatingBook, 0, 0, null, m_bookEntries.Length, m_bookEntries.Length);
