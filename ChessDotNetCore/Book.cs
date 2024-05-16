@@ -313,7 +313,7 @@ namespace ChessDotNetCore
                 {
                     Key = item.Key.Key,
                     Move = item.Key.Move,
-                    Weight = (ushort)((item.Value.Wins * 2 + item.Value.Draws) * 1000 / (item.Value.Wins * 2 + item.Value.Draws + item.Value.Lost * 2)),
+                    Weight = (ushort)((item.Value.Wins * 2 + item.Value.Draws) * 10000 / (item.Value.Wins * 2 + item.Value.Draws + item.Value.Lost * 2)),
                     Learn = 0,
                 }).Where(item => item.Weight >= minWeight)
                 .OrderBy(item => item.Key)
