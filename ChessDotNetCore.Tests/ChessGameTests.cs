@@ -3915,7 +3915,7 @@ namespace ChessDotNetCore.Tests
             skipped.Should().Be(0);
             truncated.Should().Be(0);
             errTxt.Should().BeNull();
-            book.CreateBookList(m_soredListBookKeyList, 3500, 4, null, null);
+            book.CreateBookList(m_soredListBookKeyList, 3000, 2, null, null);
             book.SaveBookToFile("Kasparov.bin");
         }
     }
