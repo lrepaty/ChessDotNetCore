@@ -16,9 +16,9 @@ namespace ChessDotNetCore
             public ulong Key;
             /// <summary>Move</summary>
             public ushort Move;
-            /// <summary>How many child book entries this one has</summary>
+            /// <summary>Weight</summary>
             public ushort Weight;
-            /// <summary>learning information</summary>
+            /// <summary>Learning information</summary>
             public uint Learn;
         }
 
@@ -322,7 +322,7 @@ namespace ChessDotNetCore
                 {
                     Key = item.Key,
                     Move = item.Move,
-                    Weight = (ushort)(item.Weight - minWeight),
+                    Weight = (ushort)(item.Weight - minWeight + 1),
                     Learn = 0,
                 }).ToArray();
 
